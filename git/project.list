@@ -1,0 +1,6 @@
+build
+device/common
+device/google/accessory/arduino
+device/google/accessory/demokit
+device/htc/common
+kernel/common
