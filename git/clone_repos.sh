@@ -1,6 +1,15 @@
 #!/bin/bash
-# Clone git repositories from the server.
-# Execute this script in the projects' base directory.
+
+function ShowHelp()
+{
+    echo "Clone git repositories from the server."
+    echo "Note: Execute this script in the projects' base directory."
+    echo
+    echo "Usage: $0  repo-base-url"
+    echo "Example:"
+    echo "    $0  http://github.com/fanhongtao"
+    exit 1
+}
 
 # create directory if it doesn't exist
 function create_dir()
@@ -12,10 +21,7 @@ function create_dir()
 
 # check args
 if [ $# -ne 1 ]; then
-    echo "Usage: $0  repo-base-url"
-    echo "Example"
-    echo "      $0  http://github.com/fanhongtao"
-    exit 1
+    ShowHelp
 fi
 
 base_dir=`pwd`

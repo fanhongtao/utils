@@ -1,6 +1,17 @@
 #!/bin/bash
-# Record the last log of each repositories. Uses this before build a release version.
-# Execute this script in the projects' base directory.
+
+function ShowHelp()
+{
+    echo "Record the last log of each repositories. Uses this before build a release version."
+    echo "Note: Execute this script in the projects' base directory."
+    echo
+    echo "Usage: $0"
+    exit 1
+}
+
+script_path=${0%/*}
+. $script_path/include.sh
+CheckForHelp $@
 
 base_dir=`pwd`
 project_file=".project/project.list"

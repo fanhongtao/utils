@@ -1,16 +1,20 @@
 #!/bin/bash
-# Add remote to existing local git repositories.
-# Execute this script in the projects' base directory.
 
 function ShowHelp()
 {
+    echo "Add remote to existing local git repositories."
+    echo "Note: Execute this script in the projects' base directory."
+    echo
     echo "Usage: $0  repo-base-url  remote-name"
-    echo "Example"
-    echo "      $0  git@github.com/fanhongtao  origin"
+    echo "Example:"
+    echo "    $0  git@github.com/fanhongtao  origin"
     exit 1
 }
 
 # check args
+script_path=${0%/*}
+. $script_path/include.sh
+CheckForHelp $@
 if [ $# -ne 2 ]; then
     ShowHelp
 fi

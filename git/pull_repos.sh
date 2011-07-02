@@ -1,14 +1,25 @@
 #!/bin/bash
-# Pull git repositories to the local.
-# Execute this script in the projects' base directory.
 
-# check args
-if [ $# -lt 1 ]; then
+function ShowHelp()
+{
+    echo "Pull git repositories to the local."
+    echo "Note: Execute this script in the projects' base directory."
+    echo
     echo "Usage: $0  [ remote-name  [ branch-name ] ]"
     echo "Example:"
-    echo "    $0  origin"
-    echo "    $0  origin  master"
+    echo "    $0                  Pull with default remote / default branch"
+    echo "    $0  origin          Pull with remote 'origin', default branch"
+    echo "    $0  origin  master  Pull with remote 'origin', branch 'master'" 
+    echo "    $0  -h              Show this message"
     exit 1
+}
+
+# check args
+script_path=${0%/*}
+. $script_path/include.sh
+CheckForHelp $@
+if [ $# -lt 1 ]; then
+    ShowHelp
 fi
 
 base_dir=`pwd`

@@ -1,11 +1,20 @@
 #!/bin/bash
-# Create git repositories on the server.
-# Execute this script in the projects' base directory.
 
-# check args
-if [ $# -ne 1 ]; then
+function ShowHelp()
+{
+    echo "Create git repositories on the server."
+    echo "Note: Execute this script in the projects' base directory."
+    echo
     echo "Usage: $0  project-list-file"
     exit 1
+}
+
+# check args
+script_path=${0%/*}
+. $script_path/include.sh
+CheckForHelp $@
+if [ $# -ne 1 ]; then
+    ShowHelp
 fi
 
 base_dir=`pwd`

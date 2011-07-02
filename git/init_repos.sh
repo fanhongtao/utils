@@ -1,11 +1,20 @@
 #!/bin/bash
-# Init git repositories on the local.
-# Execute this script in the projects' base directory.
 
-# check args
-if [ $# -ne 1 ]; then
+function ShowHelp()
+{
+    echo "Init git repositories on the local."
+    echo "Note: Execute this script in the projects' base directory."
+    echo
     echo "Usage: $0  project-list-file"
     exit 1
+}
+
+# check args
+script_path=${0%/*}
+. $script_path/include.sh
+CheckForHelp $@
+if [ $# -ne 1 ]; then
+    ShowHelp
 fi
 
 base_dir=`pwd`
