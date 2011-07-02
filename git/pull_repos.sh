@@ -4,21 +4,21 @@
 
 # check args
 if [ $# -lt 1 ]; then
-    echo "Usage: $0  project-list-file  [ remote-name  [ branch-name ] ]"
+    echo "Usage: $0  [ remote-name  [ branch-name ] ]"
     echo "Example:"
-    echo "    $0  project.list"
-    echo "    $0  project.list  origin"
-    echo "    $0  project.list  origin  master"
+    echo "    $0  origin"
+    echo "    $0  origin  master"
     exit 1
 fi
 
 base_dir=`pwd`
+project_file=".project/project.list"
 remote_name=""
 branch_name=""
-if [ $# -gt 1 ]; then
-    remote_name=$2
-    if [ $# -gt 2 ]; then
-        branch_name=$3
+if [ $# -gt 0 ]; then
+    remote_name=$1
+    if [ $# -gt 1 ]; then
+        branch_name=$2
     fi
 fi
 
@@ -34,5 +34,5 @@ do
     fi
 
     git pull $remote_name  $branch_name
-done < $1
+done < $project_file
 

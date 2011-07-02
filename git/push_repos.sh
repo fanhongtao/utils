@@ -3,18 +3,19 @@
 # Execute this script in the projects' base directory.
 
 # check args
-if [ $# -ne 2 -a $# -ne 3 ]; then
-    echo "Usage: $0  project-list-file  remote-name  [ branch-name ]"
+if [ $# -ne 1 -a $# -ne 2 ]; then
+    echo "Usage: $0  remote-name  [ branch-name ]"
     echo "Example"
-    echo "      $0  project.list  origin"
-    echo "      $0  project.list  origin  master"
+    echo "      $0  origin"
+    echo "      $0  origin  master"
     exit 1
 fi
 
 base_dir=`pwd`
-remote_name=$2
-if [ $# -eq 3 ]; then
-    branch_name=$3
+project_file=".project/project.list"
+remote_name=$1
+if [ $# -eq 2 ]; then
+    branch_name=$2
 else
     branch_name="master"
 fi
@@ -31,5 +32,5 @@ do
     fi
 
     git push $remote_name  $branch_name
-done < $1
+done < $project_file
 

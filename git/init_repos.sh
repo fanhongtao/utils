@@ -9,6 +9,7 @@ if [ $# -ne 1 ]; then
 fi
 
 base_dir=`pwd`
+project_file=$1
 
 while read line
 do
@@ -27,5 +28,5 @@ do
         git add .gitignore
     fi
     git commit -m "First commit"
-done < $1
+done < $project_file
 

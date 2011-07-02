@@ -13,6 +13,8 @@ function create_dir()
 # check args
 if [ $# -ne 1 ]; then
     echo "Usage: $0  repo-base-url"
+    echo "Example"
+    echo "      $0  http://github.com/fanhongtao"
     exit 1
 fi
 

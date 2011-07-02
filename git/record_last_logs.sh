@@ -2,15 +2,8 @@
 # Record the last log of each repositories. Uses this before build a release version.
 # Execute this script in the projects' base directory.
 
-# check args
-if [ $# -lt 1 ]; then
-    echo "Usage: $0  project-list-file"
-    echo "Example:"
-    echo "    $0  project.list"
-    exit 1
-fi
-
 base_dir=`pwd`
+project_file=".project/project.list"
 
 while read line
 do
@@ -23,5 +16,5 @@ do
     fi
 
     git log -n 1
-done < $1
+done < $project_file
 

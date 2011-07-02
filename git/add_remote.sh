@@ -2,17 +2,23 @@
 # Add remote to existing local git repositories.
 # Execute this script in the projects' base directory.
 
-# check args
-if [ $# -ne 3 ]; then
-    echo "Usage: $0  project-list-file  repo-base-url  remote-name"
+function ShowHelp()
+{
+    echo "Usage: $0  repo-base-url  remote-name"
     echo "Example"
-    echo "      $0  project.list   git@github.com/fanhongtao  origin"
+    echo "      $0  git@github.com/fanhongtao  origin"
     exit 1
+}
+
+# check args
+if [ $# -ne 2 ]; then
+    ShowHelp
 fi
 
 base_dir=`pwd`
-repo_base_url=$2
-remote_name=$3
+project_file=".project/project.list"
+repo_base_url=$1
+remote_name=$2
 
 while read line
 do
@@ -25,5 +31,5 @@ do
     fi
 
     git remote add $remote_name  ${repo_base_url}/${line}.git
-done < $1
+done < $project_file
 
