@@ -2,12 +2,13 @@
 
 function ShowHelp()
 {
-    echo "Add remote to existing local git repositories."
+    echo "Execute git command on all repositories."
     echo "Note: Execute this script in the projects' base directory."
     echo
-    echo "Usage: $0  remote-name  repo-base-url"
+    echo "Usage: $0  [ git-args ] ]"
     echo "Example:"
-    echo "    $0  git@github.com/fanhongtao  origin"
+    echo "    $0  status          Show the working tree status of all repositories"
+    echo "    $0  -h              Show this message"
     exit 1
 }
 
@@ -15,25 +16,25 @@ function ShowHelp()
 script_path=${0%/*}
 . $script_path/include.sh
 CheckForHelp $@
-if [ $# -ne 2 ]; then
+if [ $# -lt 1 ]; then
     ShowHelp
 fi
 
 base_dir=`pwd`
 project_file=".project/project.list"
-remote_name=$1
-repo_base_url=$2
 
 while read line
 do
-    echo "Add remote to $line"
     repo_dir=${base_dir}/${line}
+
     cd $repo_dir
     if [ $? -ne 0 ]; then
         echo "Can't enter directory [$repo_dir]."
         continue
     fi
 
-    git remote add $remote_name  ${repo_base_url}/${line}.git
+    echo "Repo: $line, git $@ ..."
+    git $@
+    echo
 done < $project_file
 

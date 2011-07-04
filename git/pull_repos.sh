@@ -18,9 +18,6 @@ function ShowHelp()
 script_path=${0%/*}
 . $script_path/include.sh
 CheckForHelp $@
-if [ $# -lt 1 ]; then
-    ShowHelp
-fi
 
 base_dir=`pwd`
 project_file=".project/project.list"

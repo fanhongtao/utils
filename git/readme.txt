@@ -14,7 +14,7 @@ Execute on the client
 
 or execute 'clone_repos.sh' for clone from the server.
 
-
+or execute 'git_all.sh' for other git commands.
 
 
 

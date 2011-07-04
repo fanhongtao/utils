@@ -26,6 +26,8 @@ do
         continue
     fi
 
+    echo "Repo:   $line"
     git log -n 1
+    echo
 done < $project_file
 
