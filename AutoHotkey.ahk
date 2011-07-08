@@ -18,7 +18,7 @@ GroupAdd, Browser, ahk_class Chrome_WidgetWin_0     ; Chrome
 
 
 ^!r::Reload                 ; Ctrl+Alt+R, Reload this script
-^Down::WinMinimize, A       ; Ctrl+Down, Minimize the current window 
+
 
 ; For Browser
 #IfWinActive ahk_group Browser

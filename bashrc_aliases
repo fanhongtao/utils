@@ -1,0 +1,19 @@
+# Link this file as user's .bash_aliases
+#    ln -s utils/bash_aliases  ~/.bash_aliases
+
+# Aliases for .bash_aliases
+alias viba='vi ~/.bash_aliases'     # viba -> VI .BAsh_aliases
+alias soba='source ~/.bash_aliases' # soba -> SOurce .BAsh_aliases
+
+alias ..="cd .."
+alias ...="cd ../.."
+
+# Aliases for Git
+alias gitd="git diff "
+alias gits="git status"
+alias gitl="git log "
+
+# Aliases for find
+alias fstr='find . -type f -printf "\"%p\"\n" | grep -v ".git" | grep -v ".vimproj" | xargs grep '
+alias fname='find . -type f -printf "\"%p\"\n" | grep '
+
