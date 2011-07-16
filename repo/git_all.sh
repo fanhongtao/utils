@@ -34,7 +34,7 @@ do
     fi
 
     echo "Repo: $line, git $@ ..."
-    git $@
+    git "$@"
     echo
 done < $project_file
 
