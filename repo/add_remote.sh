@@ -7,7 +7,7 @@ function ShowHelp()
     echo
     echo "Usage: $0  remote-name  repo-base-url"
     echo "Example:"
-    echo "    $0  git@github.com/fanhongtao  origin"
+    echo "    $0  origin  git@github.com/fanhongtao"
     exit 1
 }
 
