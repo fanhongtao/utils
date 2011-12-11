@@ -1,0 +1,33 @@
+# This is the config file for Artistic Style 2.02
+# For more information, please refer http://astyle.sourceforge.net/
+
+# Java style formatting/indenting uses attached brackets.
+--style=java
+
+# Indent C++ comments beginning in column one.
+--indent-col1-comments
+
+# Set the minimal indent that is added when a header is built of multiple lines.
+--min-conditional-indent=0
+
+# Set the  maximum of 40 spaces to indent a continuation line.
+--max-instatement-indent=40
+
+# Insert space padding around operators.
+--pad-oper
+
+# Insert space padding after paren headers only (e.g. 'if', 'for', 'while'...).
+--pad-header
+
+# Add brackets to unbracketed one line conditional statements (e.g. 'if', 'for', 'while'...).
+--add-brackets
+
+# Attach a pointer or reference operator (* or &) to the variable name (right).
+--align-pointer=name
+
+# Do not retain a backup of the original file. The original file is purged after it is formatted.
+--suffix=none
+
+# Don't break one-line blocks.
+--keep-one-line-blocks
+
