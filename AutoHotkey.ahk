@@ -23,6 +23,9 @@ GroupAdd, Browser, ahk_class Chrome_WidgetWin_0     ; Chrome
 ; For Browser
 #IfWinActive ahk_group Browser
     ^F1::Send  http://www.google.com.hk     ; Ctrl-F1, input URL of Google
+    +PgUp::Send  {WheelUp   5}              ; Shift-PageUp, scroll up half of screen
+    +PgDn::Send  {WheelDown 5}              ; Shift-PageDown, scroll down half of screen
+    +Space::Send {WheelDown 5}              ; Shift-Space, scroll down half of screen
 #IfWinActive
 
 ; For CMD window
