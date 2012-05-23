@@ -14,7 +14,7 @@
 ; Define commonly used browseres
 GroupAdd, Browser, ahk_class IEFrame                ; IE & Mathon
 GroupAdd, Browser, ahk_class MozillaWindowClass     ; FireFox
-GroupAdd, Browser, ahk_class Chrome_WidgetWin_0     ; Chrome
+GroupAdd, Browser, ahk_class Chrome_WidgetWin_1     ; Chrome
 
 
 ^!r::Reload                 ; Ctrl+Alt+R, Reload this script
