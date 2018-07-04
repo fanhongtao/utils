@@ -29,6 +29,6 @@ else
 fi
 
 cd $wiki_path
-nohup gollum --mathjax --port $port $wiki_path &
+nohup gollum --mathjax --port $port --adapter rugged $wiki_path &
 
 exit 0
