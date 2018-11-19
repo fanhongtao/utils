@@ -18,6 +18,7 @@ project_file=".project/project.list"
 
 while read line
 do
+    line=`echo $line | sed 's/\r//'`  # Remove '\r' in dos-format
     repo_dir=${base_dir}/${line}
 
     cd $repo_dir

@@ -26,6 +26,7 @@ repo_base_url=$2
 
 while read line
 do
+    line=`echo $line | sed 's/\r//'`  # Remove '\r' in dos-format
     echo "Add remote to $line"
     repo_dir=${base_dir}/${line}
     cd $repo_dir

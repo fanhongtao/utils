@@ -22,6 +22,7 @@ project_file=$1
 
 while read line
 do
+    line=`echo $line | sed 's/\r//'`  # Remove '\r' in dos-format
     # echo $line
     repo_dir=${base_dir}/${line}
 

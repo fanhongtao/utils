@@ -34,7 +34,6 @@ function clone_repo()
         cd $repo_path
     fi
 
-    repo=`echo $repo | sed 's/\r//'`  # Remove '\r' in dos-format
     repo_url=${repo_base_url}/${repo}.git
     echo "git clone $repo_url"
     git clone $repo_url
@@ -83,6 +82,7 @@ fi
 # Clone/pull repositories listed in the project.list
 while read line
 do
+    line=`echo $line | sed 's/\r//'`  # Remove '\r' in dos-format
     cd $base_dir
     if [ -d $line ]; then
         pull_repo ${base_dir}/${line}
