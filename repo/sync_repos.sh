@@ -34,7 +34,9 @@ function clone_repo()
         cd $repo_path
     fi
 
+    repo=`echo $repo | sed 's/\r//'`  # Remove '\r' in dos-format
     repo_url=${repo_base_url}/${repo}.git
+    echo "git clone $repo_url"
     git clone $repo_url
     echo
 }
