@@ -25,6 +25,11 @@ namespace Spliter
 	{
 		public static void Main(string[] args)
 		{
+			if (args.Length == 0) {
+				showHelp();
+				return;
+			}
+			
 			string filePath = args[0];
 			Console.WriteLine("src file: " + filePath);
 			
@@ -43,12 +48,19 @@ namespace Spliter
 			Console.ReadKey(true);
 		}
 		
+		private static void showHelp()
+		{
+			Console.WriteLine("Usage:");
+			Console.WriteLine("	Spliter file-path  line-num-1 [ line-num-2 ... line-num-n ]");
+		}
+		
 		private static void split(string filePath, int count, int start, int stop)
 		{
 			string path = Path.GetDirectoryName(filePath);
 			string name = Path.GetFileNameWithoutExtension(filePath);
 			string ext = Path.GetExtension(filePath);
-			string destFile = path + Path.DirectorySeparatorChar + name + "_" + count + ext;
+			string destFile = (path.Length == 0) ? "" : path + Path.DirectorySeparatorChar;
+			destFile = destFile + name + "_" + count + ext;
 			string stopStr = (stop == int.MaxValue) ? "EOF" : ""+stop;
 			Console.WriteLine("Write to file: " + destFile + ", from " + start + " to " + stopStr);
 			
