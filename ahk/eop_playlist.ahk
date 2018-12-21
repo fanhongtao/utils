@@ -19,16 +19,9 @@ LoadPlayList()
 {
 	PlayListFileName := "D:\music\eop\playlist.txt"  ; 将路径修改成自己的
 	
-	index=1
-	Loop
+	Loop, Read, %PlayListFileName%
 	{
-		FileReadLine, line, %PlayListFileName%, %index%
-		if ErrorLevel
-		{
-			break  ; MsgBox % "Error at line " index
-		}
-		PlayList.Push(line)
-		index := index+1
+		PlayList.Push(A_LoopReadLine)
 	}
 	; MsgBox % "PlayList " PlayList.Length() " is: " PlayList[PlayList.Length()]
 }
