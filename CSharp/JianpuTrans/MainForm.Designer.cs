@@ -105,7 +105,7 @@ namespace JianpuTrans
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.outputText);
-			this.splitContainer1.Size = new System.Drawing.Size(372, 290);
+			this.splitContainer1.Size = new System.Drawing.Size(372, 130);
 			this.splitContainer1.SplitterDistance = 179;
 			this.splitContainer1.TabIndex = 3;
 			// 
@@ -114,7 +114,7 @@ namespace JianpuTrans
 			this.inputText.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.inputText.Location = new System.Drawing.Point(0, 0);
 			this.inputText.Name = "inputText";
-			this.inputText.Size = new System.Drawing.Size(179, 290);
+			this.inputText.Size = new System.Drawing.Size(179, 130);
 			this.inputText.TabIndex = 0;
 			this.inputText.Text = "";
 			this.inputText.TextChanged += new System.EventHandler(this.InputTextTextChanged);
@@ -125,7 +125,7 @@ namespace JianpuTrans
 			this.outputText.Location = new System.Drawing.Point(0, 0);
 			this.outputText.Name = "outputText";
 			this.outputText.ReadOnly = true;
-			this.outputText.Size = new System.Drawing.Size(189, 290);
+			this.outputText.Size = new System.Drawing.Size(189, 130);
 			this.outputText.TabIndex = 0;
 			this.outputText.Text = "";
 			// 
@@ -175,8 +175,8 @@ namespace JianpuTrans
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(372, 318);
-			this.Controls.Add(this.logGroupBox);
 			this.Controls.Add(this.splitContainer1);
+			this.Controls.Add(this.logGroupBox);
 			this.Controls.Add(this.panel1);
 			this.Name = "MainForm";
 			this.Text = "简谱调号转换器";
