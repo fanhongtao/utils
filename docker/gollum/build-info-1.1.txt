@@ -1,0 +1,32 @@
+git@fht-host:~/temp/docker/gollum$ docker build -t fanhongtao/gollum-alpine:1.1 -t fanhongtao/gollum-alpine:latest .
+Sending build context to Docker daemon   2.56kB
+Step 1/7 : FROM ruby:alpine3.10
+ ---> 47c30d96ab20
+Step 2/7 : MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+ ---> Using cache
+ ---> 17715b7fdc78
+Step 3/7 : RUN apk update     && apk add --no-cache make gcc g++ libc-dev icu-dev cmake openssl-dev icu-libs git     && gem install gollum  github-markdown gollum-rugged_adapter     && apk del make gcc g++ libc-dev icu-dev cmake openssl-dev
+ ---> Using cache
+ ---> 5c68e62ca8af
+Step 4/7 : RUN cd /usr/local/bundle/gems/gollum-rugged_adapter-0.4.4/lib/rugged_adapter     && mv git_layer_rugged.rb git_layer_rugged.rb.old     && wget https://raw.githubusercontent.com/gollum/rugged_adapter/11b3d06d35f530b54f1fbcf644699f06b910791f/lib/rugged_adapter/git_layer_rugged.rb -O git_layer_rugged.rb
+ ---> Running in 183c0db9272d
+Connecting to raw.githubusercontent.com (151.101.108.133:443)
+git_layer_rugged.rb  100% |********************************| 18499  0:00:00 ETA
+Removing intermediate container 183c0db9272d
+ ---> de80da5880fa
+Step 5/7 : WORKDIR /wiki
+ ---> Running in c7ca17566211
+Removing intermediate container c7ca17566211
+ ---> e32db0ffb51d
+Step 6/7 : EXPOSE 4567
+ ---> Running in f9b1f35585f7
+Removing intermediate container f9b1f35585f7
+ ---> 1a12ea255610
+Step 7/7 : CMD gollum --mathjax --allow-uploads dir --adapter rugged
+ ---> Running in 9a3c82a118ea
+Removing intermediate container 9a3c82a118ea
+ ---> 7dd4ee38637c
+Successfully built 7dd4ee38637c
+Successfully tagged fanhongtao/gollum-alpine:1.1
+Successfully tagged fanhongtao/gollum-alpine:latest
+git@fht-host:~/temp/docker/gollum$

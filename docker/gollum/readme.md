@@ -1,6 +1,6 @@
 # Build image
 
-> docker build -t fanhongtao/gollum-alpine:1.0 -t fanhongtao/gollum-alpine:latest .
+> docker build -t fanhongtao/gollum-alpine:1.1 -t fanhongtao/gollum-alpine:latest .
 
 # Run
 
