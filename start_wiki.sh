@@ -29,6 +29,6 @@ else
 fi
 
 cd $wiki_path
-nohup gollum --mathjax --port $port --allow-uploads page --adapter rugged $wiki_path &
+nohup gollum --mathjax --port $port --allow-uploads page --adapter rugged --js --css $wiki_path &
 
 exit 0
