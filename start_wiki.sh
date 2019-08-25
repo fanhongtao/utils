@@ -29,12 +29,11 @@ else
     port=$2
 fi
 
-base_path="/"
-if [ $# -gt 2 ]; then
-  base_path=$3
-fi
-
 cd $wiki_path
-nohup gollum --mathjax --port $port --allow-uploads page --adapter rugged --js --css -b $base_path $wiki_path &
+if [ $# -gt 2 ]; then
+  nohup gollum --mathjax --port $port --allow-uploads page --adapter rugged --js --css -b $3 $wiki_path &
+else
+  nohup gollum --mathjax --port $port --allow-uploads page --adapter rugged --js --css $wiki_path &
+fi
 
 exit 0
