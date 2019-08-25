@@ -4,10 +4,11 @@
 function ShowHelp()
 {
     echo "使用方法："
-    echo "    start_wiki.sh  wiki_path  [port]"
+    echo "    start_wiki.sh  wiki_path  [port [base_path]]"
     echo " 如："
     echo "    start_wiki.sh  ~/wiki/study"
     echo "    start_wiki.sh  ~/wiki/temp  4568"
+    echo "    start_wiki.sh  ~/wiki/temp  4568  /temp"
 }
 
 if [ $# -eq 0 ]; then
@@ -28,7 +29,12 @@ else
     port=$2
 fi
 
+base_path="/"
+if [ $# -gt 2 ]; then
+  base_path=$3
+fi
+
 cd $wiki_path
-nohup gollum --mathjax --port $port --allow-uploads page --adapter rugged --js --css $wiki_path &
+nohup gollum --mathjax --port $port --allow-uploads page --adapter rugged --js --css -b $base_path $wiki_path &
 
 exit 0
