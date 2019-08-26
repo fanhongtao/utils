@@ -1,0 +1,2 @@
+auth_basic           "Fan Hongtao's wiki";
+auth_basic_user_file /home/wiki/passwd;

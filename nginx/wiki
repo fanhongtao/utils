@@ -18,4 +18,24 @@ server {
   location /temp/ {
     proxy_pass http://localhost:4568/temp/;
   }
+  
+  location /study/create/ {
+    include basic_auth;
+    proxy_pass http://localhost:4567/study/create/;
+  }
+  
+  location /study/delete/ {
+    include basic_auth;
+    proxy_pass http://localhost:4567/study/delete/;
+  }
+  
+  location /study/edit/ {
+    include basic_auth;
+    proxy_pass http://localhost:4567/study/edit/;
+  }
+  
+  location /study/rename/ {
+    include basic_auth;
+    proxy_pass http://localhost:4567/study/rename/;
+  }
 }
