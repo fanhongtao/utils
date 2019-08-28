@@ -19,8 +19,15 @@ server {
     proxy_pass http://localhost:4568/temp/;
   }
   
+  location = /study/create {
+    include basic_auth;
+    include proxy_params;
+    proxy_pass http://localhost:4567/study/create;
+  }
+  
   location /study/create/ {
     include basic_auth;
+    include proxy_params;
     proxy_pass http://localhost:4567/study/create/;
   }
   
@@ -31,6 +38,7 @@ server {
   
   location /study/edit/ {
     include basic_auth;
+    include proxy_params;
     proxy_pass http://localhost:4567/study/edit/;
   }
   
