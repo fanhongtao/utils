@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>汉语拼音</title>
+<script src="../libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../libs/clipboard/2.0.4/clipboard.min.js"></script>
+
+<script>
+window.onload = function(){
+  var btns = document.querySelectorAll('button');
+  var clipboard = new ClipboardJS(btns, {
+    text: function(trigger) {
+        return trigger.innerText;
+    }
+  });
+};
+</script>
+
+<style >
+  #shengdiao button { min-width: 45px; }
+  td {min-width: 60px; font-family:"Courier New", Times, serif; text-align:center; }
+</style>
+
+</head>
+<body>
+
+<p>本页面列出汉语拼音韵母的声调，可用于快速书写拼音。</p>
+
+<p>通过点击表格中的按钮，将相应的音拷贝到剪贴板上。</p>
+
+<table id="shengdiao" border="1">
+<caption>韵母声调</caption>
+<thead>
+  <tr><td>第一声<br/>阴平（ˉ）</td><td>第二声<br/>阳平（ˊ）</td><td>第三声<br/>上声（ˇ）</td><td>第四声<br/>去声（ˋ）</td><td>轻声</td></tr>
+</thead>
+<tbody>
+  <tr><td><button>ā</button></td><td><button>á</button></td><td><button>ǎ</button></td><td><button>à</button></td><td><button>a</button></td></tr>
+  <tr><td><button>ē</button></td><td><button>é</button></td><td><button>ě</button></td><td><button>è</button></td><td><button>e</button></td></tr>
+  <tr><td><button>ī</button></td><td><button>í</button></td><td><button>ǐ</button></td><td><button>ì</button></td><td><button>i</button></td></tr>
+  <tr><td><button>ō</button></td><td><button>ó</button></td><td><button>ǒ</button></td><td><button>ò</button></td><td><button>o</button></td></tr>
+  <tr><td><button>ū</button></td><td><button>ú</button></td><td><button>ǔ</button></td><td><button>ù</button></td><td><button>u</button></td></tr>
+  <tr><td><button>ǖ</button></td><td><button>ǘ</button></td><td><button>ǚ</button></td><td><button>ǜ</button></td><td><button>ü</button></td></tr>
+</tbody>
+</table>
+
+</body>
+</html>
