@@ -46,7 +46,7 @@ function convertIPA(input) {
   let qingfu2 = ["tʃ", "tr", "ts"]; // 清辅音（两个字符）
   let zhuofu2 = ["dʒ", "dr", "dz"]; // 浊辅音（两个字符）
   let qingfu1 = ["p", "t", "k", "f", "h", "s", "θ", "ʃ"]; // 清辅音（一个字符）
-  let zhuofu1 = ["b", "d", "g", "v", "r", "z", "ð", "ʒ", "l", "m", "n", "ŋ", "w", "j"]; // 浊辅音（一个字符）
+  let zhuofu1 = ["b", "d", "ɡ", "v", "r", "z", "ð", "ʒ", "l", "m", "n", "ŋ", "w", "j"]; // 浊辅音（一个字符）
   let skips = ["ˈ", "ˌ", "◂"]; // 需要跳过的符号，如：重音、次重音
   
   let map2 = new Map();
@@ -111,7 +111,7 @@ function convertIPA(input) {
   <tr><td>后元音（6 个）</td><td><button>/ɑː /</button> &nbsp; <button>/ʌ/</button> &nbsp; <button>/ɔː /</button> &nbsp; <button>/ɒ/</button> &nbsp; <button>/uː /</button> &nbsp; <button>/ʊ/</button></td></tr>
   <tr><td rowspan="2">双元音<br/>（8 个）</td><td>合口双元音（5 个）</td><td><button>/eɪ/</button> &nbsp; <button>/aɪ/</button> &nbsp; <button>/ɔɪ/</button> &nbsp; <button>/əʊ/</button> &nbsp; <button>/aʊ/</button></td></tr>
   <tr><td>集中双元音（3 个）</td><td><button>/ɪə/</button> &nbsp; <button>/eə/</button> &nbsp; <button>/ʊə/</button></td></tr>
-  <tr><td rowspan="6">辅音音标<br/>（28 个）</td><td colspan="2">爆破辅音（6 个）</td><td><button>/p/</button> &nbsp; <button>/b/</button> &nbsp; <button>/t/</button> &nbsp; <button>/d/</button> &nbsp; <button>/k/</button> &nbsp; <button>/g/</button></td></tr>
+  <tr><td rowspan="6">辅音音标<br/>（28 个）</td><td colspan="2">爆破辅音（6 个）</td><td><button>/p/</button> &nbsp; <button>/b/</button> &nbsp; <button>/t/</button> &nbsp; <button>/d/</button> &nbsp; <button>/k/</button> &nbsp; <button>/ɡ/</button></td></tr>
   <tr><td colspan="2">摩擦辅音（10 个）</td><td><button>/f/</button> &nbsp; <button>/v/</button> &nbsp; <button>/h/</button> &nbsp; <button>/r/</button> &nbsp; <button>/s/</button> &nbsp; <button>/z/</button> &nbsp; <button>/θ/</button> &nbsp; <button>/ð/</button> &nbsp; <button>/ʃ/</button> &nbsp; <button>/ʒ/</button></td></tr>
   <tr><td colspan="2">破擦辅音（6 个）</td><td><button>/tʃ/</button> &nbsp; <button>/dʒ/</button> &nbsp; <button>/tr/</button> &nbsp; <button>/dr/</button> &nbsp; <button>/ts/</button> &nbsp; <button>/dz/</button></td></tr>
   <tr><td colspan="2">舌边辅音（1 个）</td><td><button>/l/</button></td></tr>
@@ -123,7 +123,7 @@ function convertIPA(input) {
 
 <ul style='font-family:"Courier New", Times, serif;'>
 <li>清辅音（11个）：/p/ &nbsp;/t/ &nbsp;/k/ &nbsp;/f/ &nbsp;/h/ &nbsp;/s/ &nbsp;/θ/ &nbsp;/ʃ/ &nbsp;/tʃ/ &nbsp;/tr/ &nbsp;/ts/</li>
-<li>浊辅音（17个）：/b/ &nbsp;/d/ &nbsp;/g/ &nbsp;/v/ &nbsp;/r/ &nbsp;/z/ &nbsp;/ð/ &nbsp;/ʒ/ &nbsp;/dʒ/ &nbsp;/dr/ &nbsp;/dz/ &nbsp;/l/ &nbsp;/m/ &nbsp;/n/ &nbsp;/ŋ/ &nbsp;/w/ &nbsp;/j/</li>
+<li>浊辅音（17个）：/b/ &nbsp;/d/ &nbsp;/ɡ/ &nbsp;/v/ &nbsp;/r/ &nbsp;/z/ &nbsp;/ð/ &nbsp;/ʒ/ &nbsp;/dʒ/ &nbsp;/dr/ &nbsp;/dz/ &nbsp;/l/ &nbsp;/m/ &nbsp;/n/ &nbsp;/ŋ/ &nbsp;/w/ &nbsp;/j/</li>
 </ul>
 
 <p>国际音标</p>
