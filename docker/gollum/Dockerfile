@@ -15,8 +15,11 @@ RUN \
 # Delete unnecessary packages
     && apk del make gcc g++ libc-dev icu-dev cmake openssl-dev
 
+RUN addgroup wiki && adduser -G wiki -D wiki
+USER wiki
+
 WORKDIR /wiki
 
 EXPOSE 4567
 
-ENTRYPOINT [ "gollum", "--mathjax", "--port", "4567", "--allow-uploads", "page", "--adapter", "rugged", "--js", "--css", "-c", "config.rb", "/wiki" ]
+ENTRYPOINT [ "gollum", "--mathjax", "--port", "4567", "--adapter", "rugged", "--js", "--css", "-c", "config.rb", "/wiki" ]
