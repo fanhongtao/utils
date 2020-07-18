@@ -1,0 +1,51 @@
+# Build a dock image from source. This image can be used to test the new feature(s) of gollum.
+#
+# Build dock image:
+#    docker build -t gollum:latest -f Dockerfile-from-src .
+#
+# In wiki directory (git repository), create or run dock container:
+#    docker create --name gollum -i -t -p 4567:4567 -v "$PWD":/wiki gollum
+#  or
+#    docker run --name gollum -i -t -p 4567:4567 -v "$PWD":/wiki gollum
+#
+# (Re)Start container:
+#    docker start gollum
+#
+# Stop container:
+#    docker stop gollum
+
+# Always use the newest Ruby docker (based on Alpine)
+FROM ruby:alpine
+
+MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+
+RUN \
+# Switch mirrors for Alpine & Ruby
+    cp /etc/apk/repositories /etc/apk/repositories.bak \
+    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
+    && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
+# Install
+    && apk update \
+    && apk add --no-cache make gcc g++ libc-dev icu-dev cmake openssl-dev icu-libs git \
+    && gem install github-linguist
+
+RUN \
+    cd /home \
+# Because clone from github is too slow, I clone repository gollum into gitee.
+#   && git clone https://github.com/gollum/gollum
+    && git clone https://gitee.com/fhtao/gollum
+
+# build from source
+RUN cd /home/gollum \
+    && sed -i 's/rubygems.org/gems.ruby-china.com/' Gemfile \
+    && bundle install
+
+RUN addgroup wiki && adduser -G wiki -D wiki
+USER wiki
+
+WORKDIR /wiki
+WORKDIR /home/gollum
+
+EXPOSE 4567
+
+ENTRYPOINT [ "bundle", "exec", "bin/gollum", "--mathjax", "--adapter", "rugged", "--js", "--css", "-c", "config.rb", "/wiki" ]
