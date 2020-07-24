@@ -20,7 +20,7 @@ git commit -m "init"
 
 Create container & run:
 
-> docker run -i -t -p 8080:4567 -v "$PWD":/wiki --name gollum fanhongtao/gollum-alpine
+> docker run -i -t -p 8080:4567 -v "$PWD":/wiki --name gollum fanhongtao/gollum-alpine --allow-uploads dir
 
 Start or Stop
 
