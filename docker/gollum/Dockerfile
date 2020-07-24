@@ -4,18 +4,29 @@ MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 
 RUN \
 # Switch mirrors for Alpine & Ruby
-    cp /etc/apk/repositories /etc/apk/repositories.bak \
-    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
-    && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
+    cp /etc/apk/repositories /etc/apk/repositories.bak; \
+    echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
+    gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/; \
 # Install
-    && apk update \
-    && apk add --no-cache make gcc g++ libc-dev icu-dev cmake openssl-dev icu-libs git \
-    && gem install github-linguist -v 7.9.0 \
-    && gem install gollum -v 5.0.1 \
+    apk add --no-cache --virtual .build-deps \
+            cmake \
+            g++ \
+            gcc \
+            icu-dev \
+            libc-dev \
+            make \
+            openssl-dev \
+    ; \
+    apk add --no-cache --virtual .run-deps \
+            git \
+            icu-libs \
+    ; \
+    gem install github-linguist -v 7.9.0; \
+    gem install gollum -v 5.0.1; \
 # Delete unnecessary packages
-    && apk del make gcc g++ libc-dev icu-dev cmake openssl-dev
+    apk del .build-deps
 
-RUN addgroup wiki && adduser -G wiki -D wiki
+RUN addgroup wiki; adduser -G wiki -D wiki
 USER wiki
 
 WORKDIR /wiki
