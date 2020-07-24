@@ -2,12 +2,16 @@ FROM ruby:2.7.1-alpine3.12
 
 MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 
-RUN \
+RUN set -eux; \
 # Switch mirrors for Alpine & Ruby
     cp /etc/apk/repositories /etc/apk/repositories.bak; \
     echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
     gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/; \
 # Install
+    apk add --no-cache --virtual .run-deps \
+            git \
+            icu-libs \
+    ; \
     apk add --no-cache --virtual .build-deps \
             cmake \
             g++ \
@@ -16,10 +20,6 @@ RUN \
             libc-dev \
             make \
             openssl-dev \
-    ; \
-    apk add --no-cache --virtual .run-deps \
-            git \
-            icu-libs \
     ; \
     gem install github-linguist -v 7.9.0; \
     gem install gollum -v 5.0.1; \
