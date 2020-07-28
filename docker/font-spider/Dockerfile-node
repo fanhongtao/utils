@@ -1,0 +1,13 @@
+# Build dock image:
+#    docker build -t font-spider:node -f Dockerfile-node .
+#
+# In html directory, run dock container:
+#    docker run -it --rm -v "$PWD":/data font-spider:node /data/*.html
+
+FROM node:alpine
+
+MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+
+RUN npm install font-spider -g;
+
+ENTRYPOINT [ "font-spider" ]
