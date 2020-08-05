@@ -1,3 +1,18 @@
+#
+# Build dock image:
+#    docker build -t fanhongtao/gollum-alpine:5.1 -t fanhongtao/gollum-alpine:latest .
+#
+# In wiki directory (git repository), create or run dock container:
+#    docker create --name gollum-alpine -i -t -p 4567:4567 -v "$PWD":/wiki gollum-alpine
+#  or
+#    docker run --name gollum-alpine -i -t -p 4567:4567 -v "$PWD":/wiki gollum-alpine
+#
+# (Re)Start container:
+#    docker start gollum-alpine
+#
+# Stop container:
+#    docker stop gollum-alpine
+
 FROM ruby:2.7.1-alpine3.12
 
 MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
@@ -21,8 +36,8 @@ RUN set -eux; \
             make \
             openssl-dev \
     ; \
-    gem install github-linguist -v 7.9.0; \
-    gem install gollum -v 5.0.1; \
+    gem install github-linguist; \
+    gem install gollum -v 5.1; \
 # Delete unnecessary packages
     apk del .build-deps
 

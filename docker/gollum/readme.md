@@ -1,6 +1,6 @@
 # Build image
 
-> docker build -t fanhongtao/gollum-alpine:5.0.1 -t fanhongtao/gollum-alpine:latest .
+See [Dockerfile](Dockerfile).
 
 # Prepare wiki
 
