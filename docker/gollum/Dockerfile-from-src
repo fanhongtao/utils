@@ -62,4 +62,4 @@ WORKDIR /home/gollum
 
 EXPOSE 4567
 
-ENTRYPOINT [ "bundle", "exec", "bin/gollum", "--mathjax", "--port", "4567", "--adapter", "rugged", "--js", "--css", "-c", "config.rb", "/wiki" ]
+ENTRYPOINT [ "bundle", "exec", "bin/gollum", "--mathjax", "--port", "4567", "--adapter", "rugged", "--js", "--css", "-c", "/wiki/config.rb", "/wiki" ]
