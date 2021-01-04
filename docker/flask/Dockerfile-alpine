@@ -1,0 +1,28 @@
+# Build dock image:
+#    docker build -t flask-alpine:latest -f Dockerfile-alpine .
+#
+# In flask app directory, run dock container:
+#    docker run -it --rm -p 5000:5000 -v "$PWD":/app flask-alpine:latest
+#
+# For install pip3 on Alpine, see:
+#    https://stackoverflow.com/questions/62554991/how-do-i-install-python-on-alpine-linux
+
+FROM alpine
+
+MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+
+RUN set -eux; \
+# Switch mirrors for Alpine
+    cp /etc/apk/repositories /etc/apk/repositories.bak; \
+    echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
+# Install Python3 & pip3
+    apk add --no-cache python3; \
+    python3 -m ensurepip; \
+    pip3 install --no-cache --upgrade pip setuptools -i https://mirrors.aliyun.com/pypi/simple/;
+
+# Install Flask
+RUN pip3 install flask -i https://mirrors.aliyun.com/pypi/simple/
+
+WORKDIR /app
+EXPOSE 5000
+CMD ["python3", "app.py"]
