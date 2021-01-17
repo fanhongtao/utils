@@ -1,0 +1,189 @@
+fht@fht-E430:~/temp/docker/gollum $ date; docker build -t fanhongtao/gollum-alpine:5.1.2 -t fanhongtao/gollum-alpine:latest . ; date
+Sun Jan 17 11:41:06 CST 2021
+Sending build context to Docker daemon  3.072kB
+Step 1/8 : FROM ruby:2.7.2-alpine3.12
+2.7.2-alpine3.12: Pulling from library/ruby
+801bfaa63ef2: Already exists
+ba81004cc3f9: Pull complete
+b516164300bc: Pull complete
+d0535b286e7c: Pull complete
+dc21f12d6926: Pull complete
+Digest: sha256:0c5bfb251217128d2f308c5bc6928ac041a25b36f2775fdf901ce95cdc09162f
+Status: Downloaded newer image for ruby:2.7.2-alpine3.12
+ ---> f811257adce0
+Step 2/8 : MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+ ---> Running in 9308722caa52
+Removing intermediate container 9308722caa52
+ ---> 55bbe4a7337c
+Step 3/8 : RUN set -eux;     cp /etc/apk/repositories /etc/apk/repositories.bak;     echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories;                            gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/;     apk add --no-cache --virtual .run-deps             git             icu-libs                            ;     apk add --no-cache --virtual .build-deps             cmake             g++             gcc             icu-dev             libc-dev             make                                    openssl-dev     ;     gem install github-linguist;     gem install gollum -v 5.1.2;     apk del .build-deps
+ ---> Running in 570e94725575
++ cp /etc/apk/repositories /etc/apk/repositories.bak
++ echo http://mirrors.aliyun.com/alpine/v3.12/main/
++ gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+https://gems.ruby-china.com/ added to sources
+https://rubygems.org/ removed from sources
++ apk add --no-cache --virtual .run-deps git icu-libs
+fetch http://mirrors.aliyun.com/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+(1/7) Installing nghttp2-libs (1.41.0-r0)
+(2/7) Installing libcurl (7.69.1-r3)
+(3/7) Installing expat (2.2.9-r1)
+(4/7) Installing pcre2 (10.35-r0)
+(5/7) Installing git (2.26.2-r0)
+(6/7) Installing icu-libs (67.1-r0)
+(7/7) Installing .run-deps (20210117.034140)
+Executing busybox-1.31.1-r19.trigger
+OK: 67 MiB in 43 packages
++ apk add --no-cache --virtual .build-deps cmake g++ gcc icu-dev libc-dev make openssl-dev
+fetch http://mirrors.aliyun.com/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+(1/25) Installing libacl (2.2.53-r0)
+(2/25) Installing libbz2 (1.0.8-r1)
+(3/25) Installing lz4-libs (1.9.2-r0)
+(4/25) Installing xz-libs (5.2.5-r0)
+(5/25) Installing zstd-libs (1.4.5-r0)
+(6/25) Installing libarchive (3.4.3-r1)
+(7/25) Installing rhash-libs (1.3.9-r1)
+(8/25) Installing libuv (1.38.1-r0)
+(9/25) Installing cmake (3.17.2-r0)
+(10/25) Installing binutils (2.34-r1)
+(11/25) Installing isl (0.18-r0)
+(12/25) Installing libgomp (9.3.0-r2)
+(13/25) Installing libatomic (9.3.0-r2)
+(14/25) Installing libgphobos (9.3.0-r2)
+(15/25) Installing mpfr4 (4.0.2-r4)
+(16/25) Installing mpc1 (1.1.0-r1)
+(17/25) Installing gcc (9.3.0-r2)
+(18/25) Installing musl-dev (1.1.24-r10)
+(19/25) Installing libc-dev (0.7.2-r3)
+(20/25) Installing g++ (9.3.0-r2)
+(21/25) Installing icu (67.1-r0)
+(22/25) Installing icu-dev (67.1-r0)
+(23/25) Installing make (4.3-r0)
+(24/25) Installing openssl-dev (1.1.1i-r0)
+(25/25) Installing .build-deps (20210117.034142)
+Executing busybox-1.31.1-r19.trigger
+OK: 310 MiB in 68 packages
++ gem install github-linguist
+Building native extensions. This could take a while...
+Successfully installed charlock_holmes-0.7.7
+Building native extensions. This could take a while...
+Successfully installed escape_utils-1.2.1
+Successfully installed mini_mime-1.0.2
+Building native extensions. This could take a while...
+Successfully installed rugged-1.1.0
+Building native extensions. This could take a while...
+Successfully installed github-linguist-7.12.2
+5 gems installed
++ gem install gollum -v 5.1.2
+Building native extensions. This could take a while...
+Successfully installed rugged-0.99.0
+Successfully installed mime-types-data-3.2020.1104
+Successfully installed mime-types-3.3.1
+Successfully installed gollum-rugged_adapter-1.0
+Successfully installed rouge-3.26.0
+Successfully installed nokogiri-1.11.1-x86_64-linux
+Successfully installed crass-1.0.6
+Successfully installed loofah-2.9.0
+Successfully installed github-markup-3.0.5
+Successfully installed gemojione-4.3.3
+Successfully installed octicons-8.5.0
+Building native extensions. This could take a while...
+Successfully installed unf_ext-0.0.7.7
+Successfully installed unf-0.1.4
+Successfully installed twitter-text-1.14.7
+Successfully installed gollum-lib-5.0.6
+Successfully installed kramdown-2.3.0
+Successfully installed kramdown-parser-gfm-1.1.0
+Successfully installed rack-2.2.3
+Successfully installed tilt-2.0.10
+Successfully installed rack-protection-2.1.0
+Successfully installed ruby2_keywords-0.0.2
+Successfully installed mustermann-1.1.1
+Successfully installed sinatra-2.1.0
+Successfully installed multi_json-1.15.0
+Successfully installed sinatra-contrib-2.1.0
+Successfully installed mustache-0.99.8
+Successfully installed useragent-0.16.10
+Successfully installed concurrent-ruby-1.1.7
+Successfully installed sprockets-3.7.2
+Building native extensions. This could take a while...
+Successfully installed ffi-1.14.2
+Successfully installed rb-inotify-0.10.1
+Successfully installed rb-fsevent-0.10.4
+Successfully installed sass-listen-4.0.0
+
+Ruby Sass has reached end-of-life and should no longer be used.
+
+* If you use Sass as a command-line tool, we recommend using Dart Sass, the new
+  primary implementation: https://sass-lang.com/install
+
+* If you use Sass as a plug-in for a Ruby web framework, we recommend using the
+  sassc gem: https://github.com/sass/sassc-ruby#readme
+
+* For more details, please refer to the Sass blog:
+  https://sass-lang.com/blog/posts/7828841
+
+Successfully installed sass-3.7.4
+Successfully installed execjs-2.7.0
+Successfully installed uglifier-3.2.0
+Successfully installed sprockets-helpers-1.4.0
+Successfully installed rss-0.2.9
+Successfully installed therubyrhino_jar-1.7.8
+Successfully installed therubyrhino-2.1.2
+Successfully installed gollum-5.1.2
+41 gems installed
++ apk del .build-deps
+WARNING: Ignoring APKINDEX.b8878608.tar.gz: No such file or directory
+(1/25) Purging .build-deps (20210117.034142)
+(2/25) Purging cmake (3.17.2-r0)
+(3/25) Purging g++ (9.3.0-r2)
+(4/25) Purging gcc (9.3.0-r2)
+(5/25) Purging binutils (2.34-r1)
+(6/25) Purging libatomic (9.3.0-r2)
+(7/25) Purging libgomp (9.3.0-r2)
+(8/25) Purging libgphobos (9.3.0-r2)
+(9/25) Purging icu-dev (67.1-r0)
+(10/25) Purging icu (67.1-r0)
+(11/25) Purging libc-dev (0.7.2-r3)
+(12/25) Purging musl-dev (1.1.24-r10)
+(13/25) Purging make (4.3-r0)
+(14/25) Purging openssl-dev (1.1.1i-r0)
+(15/25) Purging libarchive (3.4.3-r1)
+(16/25) Purging libacl (2.2.53-r0)
+(17/25) Purging libbz2 (1.0.8-r1)
+(18/25) Purging lz4-libs (1.9.2-r0)
+(19/25) Purging xz-libs (5.2.5-r0)
+(20/25) Purging zstd-libs (1.4.5-r0)
+(21/25) Purging rhash-libs (1.3.9-r1)
+(22/25) Purging libuv (1.38.1-r0)
+(23/25) Purging isl (0.18-r0)
+(24/25) Purging mpc1 (1.1.0-r1)
+(25/25) Purging mpfr4 (4.0.2-r4)
+Executing busybox-1.31.1-r19.trigger
+OK: 67 MiB in 43 packages
+Removing intermediate container 570e94725575
+ ---> ae3bcef8b06b
+Step 4/8 : RUN addgroup wiki; adduser -G wiki -D wiki
+ ---> Running in 62007435e868
+Removing intermediate container 62007435e868
+ ---> 5b14a96a679c
+Step 5/8 : USER wiki
+ ---> Running in 7fdc3aa05cd9
+Removing intermediate container 7fdc3aa05cd9
+ ---> 5494103ac286
+Step 6/8 : WORKDIR /wiki
+ ---> Running in 3567265b062c
+Removing intermediate container 3567265b062c
+ ---> a9ad167328a5
+Step 7/8 : EXPOSE 4567
+ ---> Running in b75201153f86
+Removing intermediate container b75201153f86
+ ---> 1849a8b92f99
+Step 8/8 : ENTRYPOINT [ "gollum", "--mathjax", "--port", "4567", "--adapter", "rugged", "--js", "--css", "-c", "config.rb", "/wiki" ]
+ ---> Running in c8947868f750
+Removing intermediate container c8947868f750
+ ---> 232fbaa6f66a
+Successfully built 232fbaa6f66a
+Successfully tagged fanhongtao/gollum-alpine:5.1.2
+Successfully tagged fanhongtao/gollum-alpine:latest
+Sun Jan 17 11:46:16 CST 2021
+fht@fht-E430:~/temp/docker/gollum $
