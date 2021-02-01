@@ -10,10 +10,10 @@ In any directory, 'aria2' for example, create or run dock container:
 docker run \
     --name aria2 \
     --detach \
-    --log-opt max-size=8m \
     --restart unless-stopped \
     -p 6800:6800 \
     -p 6888:6888 \
+    -p 6888:6888/udp \
     -v "$PWD":/aria2 \
     fanhongtao/aria2
 ```
@@ -22,3 +22,5 @@ docker run \
   * If it does not exist, docker will create a default one.
   * You can change the config file manually, and restart docker with command `docker restart aria2` .
 * Files are download into directory `aria2/download` .
+
+> It's recommended to set docker log file size by [/etc/docker/daemon.json](../daemon.json).
