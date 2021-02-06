@@ -17,3 +17,5 @@ RUN set -eux; \
     apt-get update; \
 # install
     apt-get install -y vim
+
+ENV LANG C.UTF-8
