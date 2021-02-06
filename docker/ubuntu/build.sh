@@ -7,10 +7,14 @@ ShowHelp()
 {
     prog=$1
     echo """Usage:
-    $prog  image-dir
+    $prog [-f] image-dir
+
+Option:
+    -f      Force build parent image(s).
 
 Example:
     $prog  nginx-vod
+    $prog -f nginx-vod
 """
 }
 
@@ -22,7 +26,7 @@ Build()
     cd $base_dir/$image_dir
     parent_image=`cat Dockerfile | grep FROM | awk '{print $2;exit}'`
     count=`docker image ls $parent_image | wc -l`
-    if [ $count == 1 -a $image_dir != "base" ]; then
+    if [ $count == 1 -o $force == 1 ] && [ $image_dir != "base" ]; then
         parent_dir=`echo $parent_image | awk -F":" '{print $1}'`
         Build $parent_dir
         echo -e "================================================\n\n"
@@ -36,6 +40,13 @@ Build()
 	echo "docker build -t $image_dir:ubuntu -f Dockerfile ."
     docker build -t $image_dir:ubuntu -f Dockerfile .
 }
+
+# ====== main =======
+force=0
+if [ $# -gt 0 -a "$1" == "-f" ]; then
+    force=1
+    shift
+fi
 
 if [ $# -eq 0 ]; then
     ShowHelp `basename $0`
