@@ -30,7 +30,7 @@ def main():
     if len(sys.argv) > 2:
         suffix_list = sys.argv[2:]
     else:
-        suffix_list = ["mp4", "flv", "rmvb", "mkv"]
+        suffix_list = ["mp4"]
 
     header = ('<html>\n'
               '<head>\n'
