@@ -5,6 +5,7 @@
 在服务器侧使用：
 
 * [create_index.py](create_index.py) : 扫描目录下所有指定后缀的视频文件，创建 index.html 文件。
+  * 需要将 [jquery.min.js](../libs/jquery/3.4.1/jquery.min.js) 文件，拷贝到生成的 index.html 所在目录。
 * [convert_to_mp4.py](convert_to_mp4.py) : 扫描目录下所有指定后缀的视频文件，将其转换成 MP4 格式。因为 MP4 格式的文件，可以直接通过浏览器播放。
 * [create_vlc_playlist.py](create_vlc_playlist.py) : 扫描目录下所有指定后缀的视频文件，将其转换成 VLC 的播放列表。
 

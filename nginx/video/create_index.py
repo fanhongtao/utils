@@ -5,6 +5,37 @@
 import pathlib
 import sys
 
+header = '''<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Videos</title>
+  <script src="jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function () {
+    $("#keyword").keyup(function () {
+      keyword = this.value;
+      if (keyword == "") {
+        $("li").css({"display":"list-item"});
+      } else {
+        $("li").css({"display":"none"});
+        $("li:contains(" + keyword +")").css({"display":"list-item"});
+        $("a[href*='" + keyword +  "']").parent().css({"display":"list-item"});
+      }
+   });
+  });
+  </script>
+</head>
+<body>
+  <div>
+    Search: <input id="keyword" type="text" style="width:300px;" placeholder="Input keyword of video name"/>
+  </div>
+  <ul>
+'''
+
+tailer = '''  </ul>
+<body>
+</html>\n'''
+
 
 def show_help():
     """ Show help message """
@@ -32,21 +63,13 @@ def main():
     else:
         suffix_list = ["mp4"]
 
-    header = ('<html>\n'
-              '<head>\n'
-              '<meta http-equiv="content-type" content="text/html; charset=utf-8">\n'
-              '<title>Videos</title>\n'
-              '</head>\n'
-              '<body >\n'
-              '<ul>\n')
-    tailer = '</ul>\n<body>\n</html>\n'
     with open("index.html", mode="w") as file:
         file.write(header)
         directory = pathlib.Path(root)
         for path in sorted(directory.rglob('*')):
             if path.is_file():
                 if match(path.name.lower(), suffix_list):
-                    file.write("<li><a href='" + str(path) +
+                    file.write("    <li><a href='" + str(path) +
                                "'>" + path.name + "</a></li>\n")
         file.write(tailer)
 
