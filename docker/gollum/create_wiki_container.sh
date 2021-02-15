@@ -25,13 +25,18 @@ shift
 
 if [ $# -gt 0 ]; then
     port=$1
-	shift
+    shift
 else
     port=4567  # use default port 4567
 fi
 
 cd $wiki_path
-docker create --name $container_name -i -t -p $port:4567 -v "$PWD":/wiki fanhongtao/gollum-alpine --allow-uploads dir $*
+docker create \
+    --name $container_name \
+    -i -t \
+    -p $port:4567 \
+    -v "$PWD":/wiki \
+    fanhongtao/gollum-alpine --allow-uploads dir $*
 
 docker start $container_name
 
