@@ -15,24 +15,23 @@
 #    docker stop gollum
 
 # Always use the newest Ruby docker (based on Alpine)
-FROM ruby:alpine
+FROM ruby:2.7.2-alpine3.12
 
 MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 
-RUN set -eux; \
+RUN set -eux \
 # Switch mirrors for Alpine & Ruby
-    cp /etc/apk/repositories /etc/apk/repositories.bak; \
-    echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
-    gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/; \
+    && cp /etc/apk/repositories /etc/apk/repositories.bak \
+    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
+    && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
 # Install
-    apk add --no-cache --virtual .run-deps \
+    && apk add --no-cache --virtual .run-deps \
             git \
             icu-libs \
-    ; \
-    cd /home; \
+    && cd /home \
 # Because clone from github is too slow, I clone repository gollum into gitee.
 #   git clone https://github.com/gollum/gollum
-    git clone https://gitee.com/fhtao/gollum
+    && git clone https://gitee.com/fhtao/gollum
 
 RUN set -eux; \
 # Install
@@ -44,15 +43,14 @@ RUN set -eux; \
             libc-dev \
             make \
             openssl-dev \
-    ; \
-    gem install github-linguist; \
+    && gem install github-linguist \
 # build from source
-    cd /home/gollum; \
-    git log -n 1; \
-    sed -i 's/rubygems.org/gems.ruby-china.com/' Gemfile; \
-    bundle install; \
+    && cd /home/gollum \
+    && git log -n 1 \
+    && sed -i 's/rubygems.org/gems.ruby-china.com/' Gemfile \
+    && bundle install \
 # Delete unnecessary packages
-    apk del .build-deps
+    && apk del .build-deps
 
 RUN addgroup wiki; adduser -G wiki -D wiki
 USER wiki

@@ -17,17 +17,16 @@ FROM ruby:2.7.2-alpine3.12
 
 MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 
-RUN set -eux; \
+RUN set -eux \
 # Switch mirrors for Alpine & Ruby
-    cp /etc/apk/repositories /etc/apk/repositories.bak; \
-    echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
-    gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/; \
+    && cp /etc/apk/repositories /etc/apk/repositories.bak \
+    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
+    && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
 # Install
-    apk add --no-cache --virtual .run-deps \
+    && apk add --no-cache --virtual .run-deps \
             git \
             icu-libs \
-    ; \
-    apk add --no-cache --virtual .build-deps \
+    && apk add --no-cache --virtual .build-deps \
             cmake \
             g++ \
             gcc \
@@ -35,11 +34,10 @@ RUN set -eux; \
             libc-dev \
             make \
             openssl-dev \
-    ; \
-    gem install github-linguist; \
-    gem install gollum -v 5.1.2; \
+    && gem install github-linguist \
+    && gem install gollum -v 5.1.2 \
 # Delete unnecessary packages
-    apk del .build-deps
+    && apk del .build-deps
 
 RUN addgroup wiki; adduser -G wiki -D wiki
 USER wiki

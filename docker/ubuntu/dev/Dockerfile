@@ -8,8 +8,8 @@ FROM base:ubuntu
 
 LABEL maintainer="Fan Hongtao <fanhongtao@gmail.com>"
 
-RUN set -eux; \
+RUN set -eux \
     # install
-    apt-get install -y \
+    && apt-get install -y \
         build-essential \
         wget

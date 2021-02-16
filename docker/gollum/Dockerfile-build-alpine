@@ -30,13 +30,13 @@ FROM ruby:2.7.2-alpine3.12
 
 MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 
-RUN set -eux; \
+RUN set -eux \
 # Switch mirrors for Alpine & Ruby
-    cp /etc/apk/repositories /etc/apk/repositories.bak; \
-    echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
-    gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/; \
+    && cp /etc/apk/repositories /etc/apk/repositories.bak \
+    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
+    && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
 # Install
-    apk add --no-cache \
+    && apk add --no-cache \
             git \
             icu-libs \
             cmake \
@@ -46,23 +46,21 @@ RUN set -eux; \
             libc-dev \
             make \
             openssl-dev \
-    ; \
-    gem install github-linguist
+    && gem install github-linguist
 
-RUN set -eux; \
-    apk add --no-cache \
-        sudo \
-    ;
+RUN set -eux \
+    && apk add --no-cache \
+        sudo
 
-RUN addgroup wiki; \
-    adduser -G wiki -D wiki; \
-    echo wiki:wiki | chpasswd;\
+RUN addgroup wiki \
+    && adduser -G wiki -D wiki \
+    && echo wiki:wiki | chpasswd \
 # Grant sudo privileges to user 'wiki'
-    echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel;\
-    adduser wiki wheel; \
+    && echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel\
+    && adduser wiki wheel \
 # Create dir for gollum
-    mkdir /home/gollum; \
-    chown wiki:wiki /home/gollum
+    && mkdir /home/gollum \
+    && chown wiki:wiki /home/gollum
 
 USER wiki
 

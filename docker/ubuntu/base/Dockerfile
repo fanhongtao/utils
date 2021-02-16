@@ -8,14 +8,14 @@ FROM ubuntu:focal
 
 LABEL maintainer="Fan Hongtao <fanhongtao@gmail.com>"
 
-RUN set -eux; \
+RUN set -eux \
 # Switch mirrors for Ubuntu
-    cp /etc/apt/sources.list /etc/apt/sources.list.bak; \
-    sed -i 's/security.ubuntu/mirrors.huaweicloud/g' /etc/apt/sources.list; \
-    sed -i 's/archive.ubuntu/mirrors.huaweicloud/g' /etc/apt/sources.list; \
+    && cp /etc/apt/sources.list /etc/apt/sources.list.bak \
+    && sed -i 's/security.ubuntu/mirrors.huaweicloud/g' /etc/apt/sources.list \
+    && sed -i 's/archive.ubuntu/mirrors.huaweicloud/g' /etc/apt/sources.list \
 # update
-    apt-get update; \
+    && apt-get update \
 # install
-    apt-get install -y vim
+    && apt-get install -y vim
 
 ENV LANG C.UTF-8

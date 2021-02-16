@@ -11,14 +11,17 @@ FROM alpine
 
 MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 
-RUN set -eux; \
+RUN set -eux \
 # Switch mirrors for Alpine
-    cp /etc/apk/repositories /etc/apk/repositories.bak; \
-    echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
+    && cp /etc/apk/repositories /etc/apk/repositories.bak \
+    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
+# update older version of musl, to solve the fellowing runtime error.
+#   Error relocating /usr/lib/libpython3.8.so.1.0: copy_file_range: symbol not found
+    && apk upgrade musl \
 # Install Python3 & pip3
-    apk add --no-cache python3; \
-    python3 -m ensurepip; \
-    pip3 install --no-cache --upgrade pip setuptools -i https://mirrors.aliyun.com/pypi/simple/;
+    && apk add --no-cache python3 \
+    && python3 -m ensurepip \
+    && pip3 install --no-cache --upgrade pip setuptools -i https://mirrors.aliyun.com/pypi/simple/
 
 # Install Flask
 RUN pip3 install flask -i https://mirrors.aliyun.com/pypi/simple/

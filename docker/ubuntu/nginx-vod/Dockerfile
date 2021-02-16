@@ -8,9 +8,9 @@ FROM dev:ubuntu
 
 LABEL maintainer="Fan Hongtao <fanhongtao@gmail.com>"
 
-RUN set -eux; \
+RUN set -eux \
     # install
-    apt-get install -y \
+    && apt-get install -y \
         libpcre3-dev \
         zlib1g-dev \
         libssl-dev \

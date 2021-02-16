@@ -8,13 +8,13 @@ FROM alpine
 
 MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 
-RUN set -eux; \
+RUN set -eux \
 # Switch mirrors for Alpine
-    cp /etc/apk/repositories /etc/apk/repositories.bak; \
-    echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories; \
+    && cp /etc/apk/repositories /etc/apk/repositories.bak \
+    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
 # Install
-    apk add --no-cache npm; \
-    npm config set registry https://registry.npm.taobao.org;
+    && apk add --no-cache npm \
+    && npm config set registry https://registry.npm.taobao.org
 
 RUN npm install font-spider -g;
 
