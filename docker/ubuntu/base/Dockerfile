@@ -16,6 +16,10 @@ RUN set -eux \
 # update
     && apt-get update \
 # install
-    && apt-get install -y vim
+    && apt-get install -y vim \
+# set timezone to Shanghai
+    && DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata \
+    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && dpkg-reconfigure --frontend noninteractive tzdata
 
 ENV LANG C.UTF-8
