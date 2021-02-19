@@ -13,15 +13,15 @@ Option:
     -f      Force build parent image(s).
 
 Example:
-    $prog  nginx-vod
-    $prog -f nginx-vod
+    $prog  ubuntu/nginx-vod
+    $prog -f debian/nginx-vod
 """
 }
 
 Build()
 {
     local image_dir=$1
-    
+
     # Check where base image is exist
     cd $base_dir/$image_dir
     parent_image=`cat Dockerfile | grep FROM | awk '{print $2;exit}'`
@@ -31,14 +31,14 @@ Build()
         Build $parent_dir
         echo -e "================================================\n\n"
     fi
-    
+
     echo "Building $image_dir ..."
     cd $base_dir/$image_dir
     if [ -f prepare.sh ]; then
         ./prepare.sh
     fi
-	echo "docker build -t $image_dir:ubuntu -f Dockerfile ."
-    docker build -t $image_dir:ubuntu -f Dockerfile .
+    echo "docker build -t $image_dir:$os_name -f Dockerfile ."
+    docker build -t $image_dir:$os_name -f Dockerfile .
 }
 
 # ====== main =======
@@ -53,5 +53,11 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
+cd `dirname $1`
 base_dir=`pwd`
-Build `basename $1`
+os_name=`basename $base_dir`
+if [ $os_name == "alpine" -o $os_name == "debian" -o $os_name == "ubuntu" ]; then
+    Build `basename $1`
+else
+    echo "Error: Only support 'alpine', 'debian' or 'ubuntu'."
+fi

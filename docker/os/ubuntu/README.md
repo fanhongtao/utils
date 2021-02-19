@@ -1,8 +1,9 @@
 
-Since I often need to run some of Ubuntu's docker container, it will be very handy to create some basic images.
+> Image `ubuntu:focal` is 72.9MB.
 
-* build.sh : Tool for build image and it's base image(s).
-
-* base : Base Ubuntu image. Just changes mirrors & install vim.
-* dev : Basic compiler tools. Based on `base`.
-* nginx-vod : Nginx with `nginx-http-flv-module`. Based on `dev`.
+| image | parent| description | size |
+|:--|:--|:--|:--|
+| base | ubuntu:focal | Base Ubuntu image. <br/>Just changes mirrors & install vim. | 171MB |
+| dev | base:ubuntu | Basic compiler tools. | 408MB |
+| nginx-vod | dev:debian | Nginx with `nginx-http-flv-module`. | 470MB |
+| npm | dev:debian | Install NPM. | 692MB |
