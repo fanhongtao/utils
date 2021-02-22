@@ -20,4 +20,6 @@ alias gitd='git diff '
 alias gits='git status'
 alias gitl='git log '
 
+# other
+alias tldr='docker run --rm -it -v ~/.config:/root/.config  fanhongtao/tldr'
 
