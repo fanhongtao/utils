@@ -19,10 +19,10 @@ Create `~/.config`, if it is not exist.
 mkdir -p ~/.config
 ```
 
-Set alias
+Set alias in `.bashrc`
 
 ```sh
-alias tldr='docker run --rm -it -v ~/.config:/root/.config  fanhongtao/tldr'
+alias tldr='docker run --rm -it -v ~/.config:/home/tldr/.config  fanhongtao/tldr'
 ```
 
 Run the `tldr` alias:

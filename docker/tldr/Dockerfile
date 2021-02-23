@@ -14,8 +14,14 @@ RUN set -eux \
         git
 
 RUN wget -O /bin/tldr https://raw.githubusercontent.com/fanhongtao/tldr-sh-client/master/tldr \
-    && chmod u+x /bin/tldr
+    && chmod +x /bin/tldr
 
-WORKDIR /root/.config
+# add user
+RUN addgroup -g 1000 tldr \
+    && adduser -u 1000 -G tldr -s /bin/sh -D tldr
+USER tldr
+
+# set GIT to rebase divergent branches
+RUN git config --global pull.rebase true
 
 ENTRYPOINT ["/bin/tldr"]
