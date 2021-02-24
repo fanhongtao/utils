@@ -30,3 +30,22 @@ Run the `tldr` alias:
 ```sh
 tldr
 ```
+
+# Customization
+
+If you want to change the styling of the output from `tldr`, you can create a file named `~/env.list`
+
+```
+TLDR_HEADER='magenta bold underline'
+TLDR_QUOTE='italic'
+TLDR_DESCRIPTION='green'
+TLDR_CODE='red'
+TLDR_PARAM='white'
+TLDR_EPARAM='yellow'
+```
+
+And reset alias
+
+```sh
+alias tldr='docker run --rm -it --env-file ~/env.list -v ~/.config:/home/tldr/.config  fanhongtao/tldr'
+```
