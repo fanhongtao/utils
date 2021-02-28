@@ -11,6 +11,7 @@ RUN set -eux \
     && adduser -u 1000 -G tldr -s /bin/sh -D tldr \
 # install
     && apk add --no-cache \
+        bash \
         coreutils \
         ncurses \
         git
@@ -21,8 +22,8 @@ ENV LANG=C.UTF-8 \
     TLDR_QUOTE='italic' \
     TLDR_DESCRIPTION='green' \
     TLDR_CODE='white' \
-    TLDR_PARAM='white' \
-    TLDR_EPARAM='cyan'
+    TLDR_PARAM='yellow' \
+    TLDR_VALUE='cyan'
 
 # download tldr
 RUN wget -O /bin/tldr https://raw.githubusercontent.com/fanhongtao/tldr-sh-client/master/tldr \

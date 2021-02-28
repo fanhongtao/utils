@@ -6,7 +6,7 @@
 Build dock image:
 
 ```sh
-docker build -t fanhongtao/tldr:1.0 -t fanhongtao/tldr:latest .
+docker build -t fanhongtao/tldr:1.1 -t fanhongtao/tldr:latest .
 ```
 
 > Add `coreutils`, because `tldr` executes `date -d "14 days ago" "+%Y%m%d"`.
@@ -40,8 +40,8 @@ TLDR_HEADER='magenta bold underline'
 TLDR_QUOTE='italic'
 TLDR_DESCRIPTION='green'
 TLDR_CODE='red'
-TLDR_PARAM='white'
-TLDR_EPARAM='yellow'
+TLDR_PARAM='yellow'
+TLDR_VALUE='cyan'
 ```
 
 And reset alias
