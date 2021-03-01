@@ -1,6 +1,6 @@
 #
 # Build dock image:
-#    docker build -t fanhongtao/gollum-alpine:5.1.2 -t fanhongtao/gollum-alpine:latest .
+#    docker build -t fanhongtao/gollum-alpine:5.2.1 -t fanhongtao/gollum-alpine:latest .
 #
 # In wiki directory (git repository), create or run dock container:
 #    docker create --name gollum-alpine -i -t -p 4567:4567 -v "$PWD":/wiki gollum-alpine
@@ -20,9 +20,10 @@ MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
 RUN set -eux \
 # Switch mirrors for Alpine & Ruby
     && cp /etc/apk/repositories /etc/apk/repositories.bak \
-    && echo "http://mirrors.aliyun.com/alpine/v3.12/main/" > /etc/apk/repositories \
+    && sed -i "s@http://dl-cdn.alpinelinux.org/@http://repo.huaweicloud.com/@g" /etc/apk/repositories \
     && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
 # Install
+    && apk update \
     && apk add --no-cache --virtual .run-deps \
             git \
             icu-libs \
@@ -35,7 +36,7 @@ RUN set -eux \
             make \
             openssl-dev \
     && gem install github-linguist \
-    && gem install gollum -v 5.1.2 \
+    && gem install gollum -v 5.2.1 \
 # Delete unnecessary packages
     && apk del .build-deps
 
