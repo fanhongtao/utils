@@ -22,4 +22,5 @@ alias gitl='git log '
 
 # other
 alias tldr='docker run --rm -it -v ~/.config:/home/tldr/.config  fanhongtao/tldr'
+alias docker-images='~/utils/docker-images.sh'
 

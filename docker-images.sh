@@ -70,5 +70,6 @@ docker images | awk 'NR>1 {print $0}' | while read line; do
     if [ "${DELETE_IMAGES:-}" = "yes" ]; then
         image_id=`echo "$line" | awk '{print $3}'`
         docker image rm $image_id
+        echo
     fi
 done
