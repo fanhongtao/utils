@@ -28,7 +28,7 @@
 
 FROM ruby:2.7.2-alpine3.12
 
-MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+LABEL maintainer="Fan Hongtao <fanhongtao@gmail.com>"
 
 RUN set -eux \
 # Switch mirrors for Alpine & Ruby
@@ -64,7 +64,7 @@ RUN addgroup wiki \
 
 USER wiki
 
-WORKDIR /wiki
+VOLUME /wiki
 WORKDIR /home/gollum
 
 EXPOSE 4567

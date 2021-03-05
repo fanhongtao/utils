@@ -15,7 +15,7 @@
 
 FROM ruby:2.7.2-alpine3.12
 
-MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+LABEL maintainer="Fan Hongtao <fanhongtao@gmail.com>"
 
 RUN set -eux \
 # Switch mirrors for Alpine & Ruby
@@ -43,8 +43,9 @@ RUN set -eux \
 RUN addgroup wiki; adduser -G wiki -D wiki
 USER wiki
 
+VOLUME /wiki
 WORKDIR /wiki
 
 EXPOSE 4567
 
-ENTRYPOINT [ "gollum", "--mathjax", "--port", "4567", "--adapter", "rugged", "--js", "--css", "-c", "config.rb", "/wiki" ]
+ENTRYPOINT [ "gollum" ]

@@ -4,18 +4,22 @@
 
 function ShowHelp()
 {
-    echo "Usage:"
-    echo "    create_wiki_container.sh container_name wiki_path  [port [other_args] ]"
-    echo "Examples:"
-    echo "    create_wiki_container.sh study ~/wiki/study"
-    echo "    create_wiki_container.sh wiki_temp ~/wiki/temp  4568"
-    echo "    create_wiki_container.sh wiki_temp ~/wiki/temp  4568  -b /temp --no-edit"
+    cmd=$(basename "$0")
+    cat <<EOF
+Usage:
+    $cmd container_name wiki_path  [port [other_args] ]
+
+Examples:
+    $cmd study ~/wiki/study
+    $cmd wiki_temp ~/wiki/temp  4568
+    $cmd wiki_temp ~/wiki/temp  4568  -b /temp --no-edit
+EOF
 }
 
 
 if [ $# -lt 2 ]; then
     ShowHelp
-    exit 1
+    exit 0
 fi
 
 container_name=$1
@@ -34,9 +38,16 @@ cd $wiki_path
 docker create \
     --name $container_name \
     -i -t \
+    --restart=unless-stopped \
     -p $port:4567 \
     -v "$PWD":/wiki \
-    fanhongtao/gollum-alpine --allow-uploads dir $*
+    fanhongtao/gollum-alpine \
+        --mathjax \
+        --adapter rugged \
+        --js \
+        --css \
+        -c config.rb \
+        --allow-uploads dir $*
 
 docker start $container_name
 

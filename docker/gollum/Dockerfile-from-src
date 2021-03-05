@@ -4,9 +4,9 @@
 #    docker build -t gollum:latest -f Dockerfile-from-src .
 #
 # In wiki directory (git repository), create or run dock container:
-#    docker create --name gollum -i -t -p 4567:4567 -v "$PWD":/wiki gollum
+#    docker create --name gollum -i -t -p 4567:4567 -v "$PWD":/wiki gollum --mathjax --adapter rugged --js --css -c config.rb --allow-uploads dir
 #  or
-#    docker run --name gollum -i -t -p 4567:4567 -v "$PWD":/wiki gollum
+#    docker run --name gollum -i -t -p 4567:4567 -v "$PWD":/wiki gollum --mathjax --adapter rugged --js --css -c config.rb --allow-uploads dir
 #
 # (Re)Start container:
 #    docker start gollum
@@ -17,7 +17,7 @@
 # Always use the newest Ruby docker (based on Alpine)
 FROM ruby:2.7.2-alpine3.12
 
-MAINTAINER Fan Hongtao <fanhongtao@gmail.com>
+LABEL maintainer="Fan Hongtao <fanhongtao@gmail.com>"
 
 RUN set -eux \
 # Switch mirrors for Alpine & Ruby
@@ -55,9 +55,9 @@ RUN set -eux; \
 RUN addgroup wiki; adduser -G wiki -D wiki
 USER wiki
 
-WORKDIR /wiki
+VOLUME /wiki
 WORKDIR /home/gollum
 
 EXPOSE 4567
 
-ENTRYPOINT [ "bundle", "exec", "bin/gollum", "--mathjax", "--port", "4567", "--adapter", "rugged", "--js", "--css", "-c", "/wiki/config.rb", "/wiki" ]
+ENTRYPOINT [ "bundle", "exec", "bin/gollum", "/wiki" ]
