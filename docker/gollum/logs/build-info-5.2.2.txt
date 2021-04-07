@@ -1,0 +1,193 @@
+fht@fht-E430:~/temp/docker/gollum $ date; docker build -t fanhongtao/gollum-alpine:5.2.2 -t fanhongtao/gollum-alpine:latest . ; date
+Wed Apr  7 09:22:42 CST 2021
+Sending build context to Docker daemon  3.072kB
+Step 1/9 : FROM ruby:2.7.2-alpine3.12
+ ---> f811257adce0
+Step 2/9 : LABEL maintainer="Fan Hongtao <fanhongtao@gmail.com>"
+ ---> Using cache
+ ---> 886efe0817cc
+Step 3/9 : RUN set -eux     && cp /etc/apk/repositories /etc/apk/repositories.bak     && sed -i "s@http://dl-cdn.alpinelinux.org/@http://mirrors.aliyun.com/@g" /etc/apk/repositories     && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/     && apk update     && apk add --no-cache --virtual .run-deps             git             icu-libs     && apk add --no-cache --virtual .build-deps             cmake             g++             gcc             icu-dev             libc-dev             make             openssl-dev     && gem install github-linguist     && gem install gollum -v 5.2.2     && apk del .build-deps
+ ---> Running in 34e751ec9c10
++ cp /etc/apk/repositories /etc/apk/repositories.bak
++ sed -i s@http://dl-cdn.alpinelinux.org/@http://mirrors.aliyun.com/@g /etc/apk/repositories
++ gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+https://gems.ruby-china.com/ added to sources
+https://rubygems.org/ removed from sources
++ apk update
+fetch http://mirrors.aliyun.com/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://mirrors.aliyun.com/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+v3.12.6-5-g299ea5ee74 [http://mirrors.aliyun.com/alpine/v3.12/main]
+v3.12.6-6-g1879eae155 [http://mirrors.aliyun.com/alpine/v3.12/community]
+OK: 12758 distinct packages available
++ apk add --no-cache --virtual .run-deps git icu-libs
+fetch http://mirrors.aliyun.com/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://mirrors.aliyun.com/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/7) Installing nghttp2-libs (1.41.0-r0)
+(2/7) Installing libcurl (7.69.1-r3)
+(3/7) Installing expat (2.2.9-r1)
+(4/7) Installing pcre2 (10.35-r0)
+(5/7) Installing git (2.26.3-r0)
+(6/7) Installing icu-libs (67.1-r0)
+(7/7) Installing .run-deps (20210407.012249)
+Executing busybox-1.31.1-r19.trigger
+OK: 67 MiB in 43 packages
++ apk add --no-cache --virtual .build-deps cmake g++ gcc icu-dev libc-dev make openssl-dev
+fetch http://mirrors.aliyun.com/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://mirrors.aliyun.com/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/27) Installing libacl (2.2.53-r0)
+(2/27) Installing libbz2 (1.0.8-r1)
+(3/27) Upgrading libcrypto1.1 (1.1.1i-r0 -> 1.1.1k-r0)
+(4/27) Installing lz4-libs (1.9.2-r0)
+(5/27) Installing xz-libs (5.2.5-r0)
+(6/27) Installing zstd-libs (1.4.5-r0)
+(7/27) Installing libarchive (3.4.3-r1)
+(8/27) Upgrading libssl1.1 (1.1.1i-r0 -> 1.1.1k-r0)
+(9/27) Installing rhash-libs (1.3.9-r1)
+(10/27) Installing libuv (1.38.1-r0)
+(11/27) Installing cmake (3.17.2-r0)
+(12/27) Installing binutils (2.34-r1)
+(13/27) Installing isl (0.18-r0)
+(14/27) Installing libgomp (9.3.0-r2)
+(15/27) Installing libatomic (9.3.0-r2)
+(16/27) Installing libgphobos (9.3.0-r2)
+(17/27) Installing mpfr4 (4.0.2-r4)
+(18/27) Installing mpc1 (1.1.0-r1)
+(19/27) Installing gcc (9.3.0-r2)
+(20/27) Installing musl-dev (1.1.24-r10)
+(21/27) Installing libc-dev (0.7.2-r3)
+(22/27) Installing g++ (9.3.0-r2)
+(23/27) Installing icu (67.1-r0)
+(24/27) Installing icu-dev (67.1-r0)
+(25/27) Installing make (4.3-r0)
+(26/27) Installing openssl-dev (1.1.1k-r0)
+(27/27) Installing .build-deps (20210407.012252)
+Executing busybox-1.31.1-r19.trigger
+Executing ca-certificates-20191127-r4.trigger
+OK: 310 MiB in 68 packages
++ gem install github-linguist
+Building native extensions. This could take a while...
+Successfully installed charlock_holmes-0.7.7
+Building native extensions. This could take a while...
+Successfully installed escape_utils-1.2.1
+Successfully installed mini_mime-1.1.0
+Building native extensions. This could take a while...
+Successfully installed rugged-1.1.0
+Building native extensions. This could take a while...
+Successfully installed github-linguist-7.13.0
+5 gems installed
++ gem install gollum -v 5.2.2
+Successfully installed mime-types-1.25.1
+Successfully installed gollum-rugged_adapter-1.1
+Successfully installed rouge-3.26.0
+Successfully installed nokogiri-1.11.2-x86_64-linux
+Successfully installed crass-1.0.6
+Successfully installed loofah-2.9.0
+Successfully installed github-markup-3.0.5
+Successfully installed gemojione-4.3.3
+Successfully installed octicons-12.1.0
+Building native extensions. This could take a while...
+Successfully installed unf_ext-0.0.7.7
+Successfully installed unf-0.1.4
+Successfully installed twitter-text-1.14.7
+Successfully installed gollum-lib-5.1
+Successfully installed kramdown-2.3.1
+Successfully installed kramdown-parser-gfm-1.1.0
+Successfully installed rack-2.2.3
+Successfully installed tilt-2.0.10
+Successfully installed rack-protection-2.1.0
+Successfully installed ruby2_keywords-0.0.4
+Successfully installed mustermann-1.1.1
+Successfully installed sinatra-2.1.0
+Successfully installed multi_json-1.15.0
+Successfully installed sinatra-contrib-2.1.0
+Successfully installed mustache-0.99.8
+Successfully installed mustache-sinatra-1.0.1
+Successfully installed useragent-0.16.10
+Successfully installed concurrent-ruby-1.1.8
+Successfully installed sprockets-3.7.2
+Building native extensions. This could take a while...
+Successfully installed ffi-1.15.0
+Successfully installed rb-inotify-0.10.1
+Successfully installed rb-fsevent-0.10.4
+Successfully installed sass-listen-4.0.0
+
+Ruby Sass has reached end-of-life and should no longer be used.
+
+* If you use Sass as a command-line tool, we recommend using Dart Sass, the new
+  primary implementation: https://sass-lang.com/install
+
+* If you use Sass as a plug-in for a Ruby web framework, we recommend using the
+  sassc gem: https://github.com/sass/sassc-ruby#readme
+
+* For more details, please refer to the Sass blog:
+  https://sass-lang.com/blog/posts/7828841
+
+Successfully installed sass-3.7.4
+Successfully installed execjs-2.7.0
+Successfully installed uglifier-4.2.0
+Successfully installed sprockets-helpers-1.4.0
+Successfully installed rss-0.2.9
+Successfully installed therubyrhino_jar-1.7.8
+Successfully installed therubyrhino-2.1.2
+Successfully installed webrick-1.7.0
+Successfully installed gollum-5.2.2
+41 gems installed
++ apk del .build-deps
+(1/25) Purging .build-deps (20210407.012252)
+(2/25) Purging cmake (3.17.2-r0)
+(3/25) Purging g++ (9.3.0-r2)
+(4/25) Purging gcc (9.3.0-r2)
+(5/25) Purging binutils (2.34-r1)
+(6/25) Purging libatomic (9.3.0-r2)
+(7/25) Purging libgomp (9.3.0-r2)
+(8/25) Purging libgphobos (9.3.0-r2)
+(9/25) Purging icu-dev (67.1-r0)
+(10/25) Purging icu (67.1-r0)
+(11/25) Purging libc-dev (0.7.2-r3)
+(12/25) Purging musl-dev (1.1.24-r10)
+(13/25) Purging make (4.3-r0)
+(14/25) Purging openssl-dev (1.1.1k-r0)
+(15/25) Purging libarchive (3.4.3-r1)
+(16/25) Purging libacl (2.2.53-r0)
+(17/25) Purging libbz2 (1.0.8-r1)
+(18/25) Purging lz4-libs (1.9.2-r0)
+(19/25) Purging xz-libs (5.2.5-r0)
+(20/25) Purging zstd-libs (1.4.5-r0)
+(21/25) Purging rhash-libs (1.3.9-r1)
+(22/25) Purging libuv (1.38.1-r0)
+(23/25) Purging isl (0.18-r0)
+(24/25) Purging mpc1 (1.1.0-r1)
+(25/25) Purging mpfr4 (4.0.2-r4)
+Executing busybox-1.31.1-r19.trigger
+OK: 67 MiB in 43 packages
+Removing intermediate container 34e751ec9c10
+ ---> ac00c55dd3d0
+Step 4/9 : RUN addgroup wiki; adduser -G wiki -D wiki
+ ---> Running in 0f05be34e74b
+Removing intermediate container 0f05be34e74b
+ ---> afabbbeb0ec7
+Step 5/9 : USER wiki
+ ---> Running in dd993f9ab150
+Removing intermediate container dd993f9ab150
+ ---> 3d82e5a82574
+Step 6/9 : VOLUME /wiki
+ ---> Running in b8774a330001
+Removing intermediate container b8774a330001
+ ---> 28b2f5067122
+Step 7/9 : WORKDIR /wiki
+ ---> Running in adaaf0c4c601
+Removing intermediate container adaaf0c4c601
+ ---> 8416e1488ebc
+Step 8/9 : EXPOSE 4567
+ ---> Running in 39cb4b5dd5ce
+Removing intermediate container 39cb4b5dd5ce
+ ---> 2015abdfc084
+Step 9/9 : ENTRYPOINT [ "gollum" ]
+ ---> Running in 9dafaec75520
+Removing intermediate container 9dafaec75520
+ ---> 6292832867eb
+Successfully built 6292832867eb
+Successfully tagged fanhongtao/gollum-alpine:5.2.2
+Successfully tagged fanhongtao/gollum-alpine:latest
+Wed Apr  7 09:26:01 CST 2021
+fht@fht-E430:~/temp/docker/gollum $
