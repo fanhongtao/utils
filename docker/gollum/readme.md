@@ -1,8 +1,16 @@
-# Build image
+#  IMPORTANT
+
+Please use the [official docker](https://github.com/gollum/gollum/wiki/Gollum-via-Docker).
+
+---
+
+# Deprecated
+
+## Build image
 
 See [Dockerfile](Dockerfile).
 
-# Prepare wiki
+## Prepare wiki
 
 Gollum needs a git repository. Use the fellowing commands to make an empty one:
 
@@ -16,7 +24,7 @@ git commit -m "init"
 ```
 
 
-# Run
+## Run
 
 Create container & run:
 
@@ -28,7 +36,7 @@ Start or Stop
 
 > docker stop gollum
 
-# Set git info
+## Set git info
 
 Execute these commands while container 'gollum' is running:
 

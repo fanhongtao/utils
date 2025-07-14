@@ -1,5 +1,6 @@
 #!/bin/bash
-# Create a container for wiki, by image fanhongtao/gollum-alpine
+# Create a container for wiki, by official docker image gollumwiki/gollum
+# Ref: https://github.com/gollum/gollum/wiki/Gollum-via-Docker
 #set -x
 
 function ShowHelp()
@@ -22,6 +23,7 @@ if [ $# -lt 2 ]; then
     exit 0
 fi
 
+gollum_version="6.1"
 container_name=$1
 wiki_path=$2
 shift
@@ -41,8 +43,8 @@ docker create \
     --restart=unless-stopped \
     -p $port:4567 \
     -v "$PWD":/wiki \
-    fanhongtao/gollum-alpine \
-        --mathjax \
+    gollumwiki/gollum:$gollum_version \
+        --math katex \
         --adapter rugged \
         --js \
         --css \
@@ -52,6 +54,6 @@ docker create \
 docker start $container_name
 
 docker exec $container_name git config --global user.name "Fan Hongtao"
-docker exec $container_name git config --global user.email "fanhongtao@gmail.com"
+docker exec $container_name git config --global user.email "fanhongtao@163.com"
 
 exit 0
