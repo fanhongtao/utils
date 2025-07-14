@@ -2,11 +2,11 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>国际音标上色</title>
-<!-- 
-<script src="https://code.jquery.com/jquery-latest.js"></script> 
+<!--
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 -->
-<script src="../libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../libs/jquery/jquery.min.js"></script>
 
 <script>
 window.onload = function(){
@@ -48,20 +48,20 @@ function convertIPA(input) {
   let qingfu1 = ["p", "t", "k", "f", "h", "s", "θ", "ʃ"]; // 清辅音（一个字符）
   let zhuofu1 = ["b", "d", "ɡ", "v", "r", "z", "ð", "ʒ", "l", "m", "n", "ŋ", "w", "j"]; // 浊辅音（一个字符）
   let skips = ["ˈ", "ˌ", "◂"]; // 需要跳过的符号，如：重音、次重音
-  
+
   let map2 = new Map();
   addMap(map2, yuan2, "yuan");
   addMap(map2, qingfu2, "qingfu");
   addMap(map2, zhuofu2, "zhuofu");
-  
+
   let map1 = new Map();
   addMap(map1, yuan1, "yuan");
   addMap(map1, qingfu1, "qingfu");
   addMap(map1, zhuofu1, "zhuofu");
-  
+
   let mapSkip = new Map();
   addMap(mapSkip, skips, "");
-  
+
   var ret = "";
   var i = 0;
   while (i < input.length) {
@@ -71,14 +71,14 @@ function convertIPA(input) {
       ret = ret + "<font class=" + map2.get(str) + ">" + str + "</font>";
       continue;
     }
-    
+
     str = input.substr(i, 1);
     if (map1.has(str)) {
       i = i + 1;
       ret = ret + "<font class=" + map1.get(str) + ">" + str + "</font>";
       continue;
     }
-    
+
     if (mapSkip.has(str)) {
       i = i + 1;
       ret = ret + str;
@@ -94,7 +94,7 @@ function convertIPA(input) {
 <style >
   #ipa button { min-width: 45px; }
   td {min-width: 100px; font-family:"Courier New", Times, serif;}
-  
+
   .yuan   {color: #FF0000;}  /*   元音的颜色 */
   .qingfu {color: #33CC00;}  /* 清辅音的颜色 */
   .zhuofu {color: #0000FF;}  /* 浊辅音的颜色 */
@@ -145,7 +145,7 @@ function convertIPA(input) {
 <tr><td>
 <textarea id="output" rows="8" cols="70" placeholder="显示HTML代码公式。
 也可以直接在这里输入 HTML 代码，
-然后点击“更新”按钮，查看 HTML 的显示效果。"></textarea><!-- readonly="readonly" --> 
+然后点击“更新”按钮，查看 HTML 的显示效果。"></textarea><!-- readonly="readonly" -->
 </td><td><input id="refreshHTML" type="button" value="更新HTML"/></td><td>
 <div id="formula" style="min-width: 200px"></div>
 </td></tr>

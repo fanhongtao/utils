@@ -10,17 +10,17 @@
 	}
   });
 </script>
-<!-- 
+<!--
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<script src="https://code.jquery.com/jquery-latest.js"></script> 
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 -->
 
 <script type="text/javascript" async
   src="https://cdn.bootcss.com/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="../libs/jquery/jquery.min.js"></script>
 
 <script>
 window.onload = function(){
@@ -35,7 +35,7 @@ window.onload = function(){
       output = shuShi(lines);
     }
     $("#output").val(output);
-    
+
     showMath(output);
   });
   $("#refreshMath").click(function() {
@@ -102,7 +102,7 @@ function shuShi(lines) {
         needUnderline = true;
         continue;
       }
-      
+
       if (ch == " ") {
         tmp += phantom(1);
       } else if (ch == "*") {
@@ -117,7 +117,7 @@ function shuShi(lines) {
     if (needUnderline) {
       tmp = "\\underline{" + tmp + "}";
     }
-    
+
     if (tmp.indexOf("/") > 0) {
       tmp = tmp.replace(/\//g, "\\enclose{longdiv}{") + "}";
     }
@@ -163,7 +163,7 @@ function shuShi(lines) {
 <tr><td>
 <textarea id="output" rows="8" cols="70" placeholder="显示转换后的 MathJax（LaTex）公式。
 也可以不经转换，直接在这里输入 MathJax（LaTex）公式，
-然后点击“更新公式”按钮，查看公式的显示效果。"></textarea><!-- readonly="readonly" --> 
+然后点击“更新公式”按钮，查看公式的显示效果。"></textarea><!-- readonly="readonly" -->
 </td><td><input id="refreshMath" type="button" value="更新公式"/></td><td>
 <div id="formula" style="min-width: 200px"></div>
 </td></tr>
